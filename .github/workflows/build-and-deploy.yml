@@ -18,15 +18,9 @@ jobs:
       uses: actions/setup-dotnet@v1
       with: 
         dotnet-version: ${{ env.NETCORE_VERSION }}
-    
-    - name: Restore
-      run: dotnet restore
-
-    - name: Build
-      run: dontnet build --no-restore -c Release
 
     - name: Publish app for Deploy
-      run: dotnet publish --configurations Release --no-build --output ${{ env.AZURE_WEBAPP_PACKAGE_PATH}}
+      run: dotnet publish --configurations Release --output ${{ env.AZURE_WEBAPP_PACKAGE_PATH}}
 
     - name: Deploy to Azure WebApp
       uses: azure/webapps-deploy@v2
